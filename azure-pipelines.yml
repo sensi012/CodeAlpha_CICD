@@ -20,6 +20,6 @@ steps:
     displayName: 'Push to Azure Container Registry'
     inputs:
       command: push
-      containerRegistry: 'your-acr-service-connection'
+      containerRegistry: 'codealphaisaiah'
       repository: '$(imageName)'
       tags: '$(Build.BuildId)'
