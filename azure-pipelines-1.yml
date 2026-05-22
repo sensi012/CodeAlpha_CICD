@@ -1,0 +1,19 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  acrName: 'codealphaisaiah.azurecr.io'
+  imageName: 'codealpha-app'
+
+steps:
+  - task: Docker@2
+    displayName: 'Build and Push to ACR'
+    inputs:
+      containerRegistry: 'codealphaisaiah'
+      repository: '$(imageName)'
+      command: 'buildAndPush'
+      dockerfile: '**/Dockerfile'
+      tags: '$(Build.BuildId)'
