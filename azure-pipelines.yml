@@ -12,8 +12,8 @@ steps:
   - task: Docker@2
     displayName: 'Build Docker Image'
     inputs:
-      containerRegistry: 'codealphaisaiah.azurecr.io'  # Link to your ACR connection here too
-      repository: '$(imageName)'            # Name the image 'codealpha-app'
+      containerRegistry: 'codealphaisaiah'  # FIXED: Matches the Service Connection name
+      repository: '$(imageName)'
       command: build
       dockerfile: '**/Dockerfile'
       tags: '$(Build.BuildId)'
@@ -21,7 +21,7 @@ steps:
   - task: Docker@2
     displayName: 'Push to Azure Container Registry'
     inputs:
-      containerRegistry: 'codealphaisaiah'
+      containerRegistry: 'codealphaisaiah'  # Matches the Service Connection name
       command: push
-      repository: '$(imageName)'            # FIXED: Changed from $(dockerfile) to $(imageName)
+      repository: '$(imageName)'
       tags: '$(Build.BuildId)'
